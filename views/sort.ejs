@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>test</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma+2&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style2.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    $(document).ready(function() {
+      let arri = [];
+      let ids = []
+      let val = document.querySelectorAll("#sort li");
+      for (let i = 0; i < val.length; i++) {
+        arri.push(val[i].className);
+        ids.push(0);
+      }
+      console.log(val);
+      $("#sort").sortable({
+        update: function(data, ui) {
+          let val1 = document.querySelectorAll("#sort li");
+
+          for (let i = 0; i < val.length; i++) {
+            ids[i] = parseInt($(val1[i]).attr('id')[1]) + 1;
+          }
+          console.log(ids);
+          $.post('sort',{ids : ids})
+          val1 = document.querySelectorAll("#sort li");
+          for(let i=0;i<val.length;i++){
+
+            $(val1[i]).removeAttr('id').attr("id","b"+i)
+          }
+
+
+
+
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+
+  <div class="container">
+
+    <div class="jumbotron" id="sorting">
+
+      <ol id="sort">
+        <%for(let i =0 ;i<question.length;i++){%>
+        <div>
+          <li class="a<%=question[i].type%>" id="b<%=i%>"><%=question[i].title%></li>
+        </div>
+
+        <%};%>
+      </ol>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

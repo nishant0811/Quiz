@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma+2&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles1.css">
+</head>
+
+<body>
+  <div class="container-fluid h1r">
+    <h1>All The Best</h1>
+  </div>
+  <div class="container-fluid">
+    <div class="margin">
+
+      <form class="" action="/quiz/<%=d%>" method="post">
+        <%for(let i=0; i<question.length; i++ ){%>
+          <div class="form-group optionss " >
+
+            <h3><%=question[i].question%></h3>
+            <ol type="1">
+
+              <%for(let j=0; j < 4; j++ ){%>
+              <li>
+
+                  <label for='<%=i%>'>
+                    <input type='radio' name='<%=i+1%>' value='<%=j+1%>' id='<%=i%><%=j%>' /><%=question[i].options[j]%></label>
+
+
+              </li>
+              <%}%>
+                </ol>
+                <input type='radio' name='<%=i+1%>' value='0'  style= "display: none"  checked :"checked" />
+                  <input type=button value="Uncheck" onclick="r_uck(<%=i%>)">
+            <br>
+            <hr class ="hr1" style = "border : 1px solid grey">
+          </div>
+            <%}%>
+            <div class="bttn">
+              <button type="submit" class="btn btn-outline-primary " name="button">Submit</button>
+            </div>
+
+        </form>
+    </div>
+  </div>
+  <script>
+
+        function r_uck(value){
+          for(let k=0;k<4;k++){
+            const ff = String(value)+String(k)
+            document.getElementById(ff).checked = false;
+          }
+
+        }
+
+  </script>
+  <footer class="footer f1">
+    <div class="container">
+      <span class="">Made in ❤ by Nishant Raj.</span>
+    </div>
+  </footer>
+</body>
+
+</html>
